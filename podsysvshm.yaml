@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podsysvshmtest
+spec:
+  restartPolicy : Never
+  containers:
+    - name: sender
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ "/src/sysv/sender" ]
+    - name: receiver
+      imagePullPolicy: IfNotPresent
+      image: abcdesktopio/ipctest
+      command: [ "/src/sysv/receiver.sh" ]
