@@ -1,17 +1,9 @@
 #!/bin/bash
+# ipcs -m -i 0
 cd /src/sysv
-do=true
-while $do
-do
-  H=$(./receiver)
-  exit_code=$?
-  if [ $exit_code -eq 0 ]; then
-	echo $H
-	do=false
-	exit 0
-  else
-	echo "waiting 0.5s"
-	sleep 0.5
-  fi
+./receiver
+while [ $? -ne 0 ]; do
+    echo "this is an unlimited loop, waiting 5s"
+    sleep 5
+    ./receiver
 done
-exit 1
