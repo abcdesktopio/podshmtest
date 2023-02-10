@@ -6,10 +6,8 @@ spec:
   restartPolicy : Never
   containers:
     - name: sender
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [ "/src/posix/shmem/memwriter" ]
     - name: receiver
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [  "/src/posix/shmem/memreader" ]

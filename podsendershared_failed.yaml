@@ -10,7 +10,6 @@ spec:
       emptyDir: {}
   containers:
     - name: sender
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [ "/bin/sleep", "1d" ]
       volumeMounts:
@@ -20,7 +19,6 @@ spec:
       - name: FTOK_PATH
         value: "/dummy"
     - name: receiver
-      imagePullPolicy: IfNotPresent
       image: abcdesktopio/ipctest
       command: [ "/bin/sleep", "1d" ]
       volumeMounts:
