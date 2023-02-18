@@ -1,0 +1,19 @@
+FROM ubuntu:20.04
+
+RUN apt-get update
+RUN apt-get install -y build-essential bash 
+COPY src src
+WORKDIR /src/posix
+RUN gcc receiver.c -lrt -o receiver
+RUN gcc sender.c   -lrt -o sender
+WORKDIR /src/posix/shmem
+RUN gcc -o memwriter memwriter.c -lrt -lpthread
+RUN gcc -o memreader memreader.c -lrt -lpthread 
+WORKDIR /src/posix/mqueue
+RUN gcc -o receiver receiver.c -lrt
+RUN gcc -o sender   sender.c -lrt 
+WORKDIR /src/sysv
+RUN g++ -o receiver receiver.c 
+RUN g++ -o sender   sender.c 
+CMD /bin/bash
+WORKDIR /
